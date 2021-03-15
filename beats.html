@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Beats</title>
+    <link rel="stylesheet" href="beats-style.css">
+    <link rel="stylesheet" href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css">
+</head>
+
+<body>
+<section class="section" id="app">
+    <div class="paper container">
+        <h2>Choose project:</h2>
+        <select v-model="selectedProject">
+            <option v-for="option in projects" v-bind:value="option.id">
+                {{ option.name }}
+            </option>
+        </select>
+        <div class="selector-box"></div>
+        <div class="toggle">
+            <button v-on:click="projectStart">start</button>
+            <button v-on:click="projectStop">stop</button>
+        </div>
+        <span>{{statusMessage}}</span>
+        <br>
+        <span>{{statusMessageLine2}}</span>
+        <div class="status"></div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script >
+    var domain = 'http://localhost:7999/projects/'
+    var app = new Vue({
+        el: '#app',
+        data () {
+            return {
+                selectedProject: null,
+                projects: [{}, {}],
+                statusMessage: "Welcome. Please choose an action",
+                statusMessageLine2: ""
+            }
+        },
+        mounted () {
+            axios.get(domain)
+                .then(response => (this.projects = response.data))
+        },
+        methods: {
+            projectStart: function (event) {
+                projectStartURL = domain + this.selectedProject + '/start'
+                axios.post(projectStartURL, {})
+                    .then(response => {
+                        this.statusMessage = "Project Started on " + response.data.start;
+                        console.log("starting log succeeded!");
+                    })
+                    .catch(function () {
+                        this.statusMessage = "OOOpsi!!";
+                        console.log("Faced an exception!")
+                    })
+            },
+            projectStop: function (event) {
+                projectStopURL = domain + this.selectedProject + '/stop'
+                axios.post(projectStopURL, {})
+                    .then(response => {
+                        this.statusMessage = "Project Stopped on " + response.data.end
+                        this.statusMessageLine2 = "timesheet ID: " + response.data.id
+                    })
+
+            }
+        }
+
+    })
+
+
+</script>
+</body>
+</html>
