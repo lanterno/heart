@@ -1,7 +1,7 @@
 <template>
   <timer/>
-  <clicker startPoint=3 />
-  <clicker startPoint=7 />
+  <clicker :startPoint=3 />
+  <clicker :startPoint=7 />
 </template>
 
 <script>
