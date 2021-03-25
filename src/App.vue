@@ -18,6 +18,7 @@ export default {
 </script>
 
 <style>
+@import '~papercss/dist/paper.css';
 #app {
   background-color: bisque;
 }
