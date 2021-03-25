@@ -23,7 +23,7 @@
 
 <script>
 import axios from "axios";
-let domain = 'http://localhost:7999/projects/'
+let domain = 'http://localhost:7999'
 export default {
   name: "Timer",
   data () {
@@ -35,16 +35,16 @@ export default {
     }
   },
   mounted () {
-    axios.get(domain)
+    axios.get(`${domain}/projects`)
         .then(response => (this.projects = response.data))
   },
   methods: {
     projectStart () {
-      let projectStartURL = domain + this.selectedProject + '/start'
+      let projectStartURL = `${domain}/projects/${this.selectedProject}/start`
       axios.post(projectStartURL, {})
           .then(response => {
-            this.statusMessage = "Project Started on " + response.data.start;
-            this.statusMessageLine2 = "timesheet ID: " + response.data.id;
+            this.statusMessage = `Project Started on ${response.data.start}`;
+            this.statusMessageLine2 = `timesheet ID: ${response.data.id}`;
             console.log("starting log succeeded!");
           })
           .catch(function () {
@@ -53,11 +53,11 @@ export default {
           })
     },
     projectStop () {
-      let projectStopURL = domain + this.selectedProject + '/stop'
+      let projectStopURL = `${domain}/projects/${this.selectedProject}/stop`
       axios.post(projectStopURL, {})
           .then(response => {
-            this.statusMessage = "Project Stopped on " + response.data.end;
-            this.statusMessageLine2 = "timesheet ID: " + response.data.id;
+            this.statusMessage = `Project Stopped on ${response.data.end}`;
+            this.statusMessageLine2 = `timesheet ID: ${response.data.id}`;
           })
     }
   }
