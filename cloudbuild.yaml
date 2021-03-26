@@ -1,3 +1,8 @@
+artifacts:
+  objects:
+    location: gs://ptc-heart-frontend-static-site
+    paths: ['dist/*']
+
 steps:
   - name: node
     entrypoint: npm
