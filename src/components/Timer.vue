@@ -25,11 +25,32 @@
     </div>
   </div>
   </section>
+  <div class="row flex-spaces child-borders">
+    <label class="paper-btn margin" for="modal-password">Enter password!</label>
+  </div>
+  <input class="modal-state" id="modal-password" type="checkbox">
+  <div class="modal">
+    <label class="modal-bg" for="modal-password"></label>
+    <div class="modal-body">
+      <label class="btn-close" for="modal-password">X</label>
+      <h4 class="modal-title">Password?</h4>
+      <h5 class="modal-subtitle">Hey there!</h5>
+      <p class="modal-text">You can take a look around, but you can only control the timer
+      after you give me the password :)</p>
+      <div class="form-group">
+        <label for="password">Here👇:</label>
+        <input type="password" placeholder="secret" id="password">
+      </div>
+      <button>submit</button>
+
+    </div>
+  </div>
 </template>
 
 <script>
 import axios from "axios";
-let domain = 'http://localhost:7999'
+let domain = 'https://api.lifepete.com'
+// let domain = 'http://localhost:7999'
 export default {
   name: "Timer",
   data () {
