@@ -1,7 +1,7 @@
 artifacts:
   objects:
     location: gs://ptc-heart-frontend-static-site
-    paths: ['dist/*']
+    paths: ['dist/*', 'dist/css/*', 'dist/js/*']
 
 steps:
   - name: node
