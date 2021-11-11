@@ -1,5 +1,5 @@
-FROM node:current-slim
-RUN npm install -g npm@8.1.2
+FROM node:lts-slim
+RUN npm install -g npm@latest
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
