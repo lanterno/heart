@@ -22,3 +22,9 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+## RoadMap:
+
+- [ ] Add more status information: start time and duration so far
+- [ ] Add archive button (only on inactive projects)
