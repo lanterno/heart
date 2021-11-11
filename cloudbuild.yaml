@@ -1,8 +1,3 @@
-artifacts:
-  objects:
-    location: gs://ptc-heart-frontend-static-site
-    paths: ['dist/*', 'dist/css/*', 'dist/js/*']
-
 steps:
   - name: node
     entrypoint: npm
@@ -10,3 +5,7 @@ steps:
   - name: node:16
     entrypoint: npm
     args: ['run', 'build']
+#  next step is responsible for uploading the artifacts to cloud storage
+#  Unfortunately the artifacts directive can't recursively copy a folder.
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: [ '-m', 'cp', '-r', 'dist/*', 'gs://ptc-heart-frontend-static-site' ]
