@@ -30,8 +30,9 @@
 
 <script>
 import axios from 'axios'
-const domain = 'https://api.lifepete.com'
+const domain = 'https://srv.lifepete.com'
 // const domain = 'http://localhost:7999'
+
 export default {
   name: 'Timer',
   data () {

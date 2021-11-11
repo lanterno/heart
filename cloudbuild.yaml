@@ -8,4 +8,4 @@ steps:
 #  next step is responsible for uploading the artifacts to cloud storage
 #  Unfortunately the artifacts directive can't recursively copy a folder.
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: [ '-m', 'cp', '-r', 'dist/*', 'gs://beats-web' ]
+    args: [ '-m', 'cp', '-r', 'dist/*', 'gs://site.lifepete.com' ]
